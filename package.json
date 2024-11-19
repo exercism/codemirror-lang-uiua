@@ -1,6 +1,6 @@
 {
   "name": "@exercism/codemirror-lang-uiua",
-  "version": "0.1.6",
+  "version": "0.0.1",
   "description": "Uiua language support for CodeMirror",
   "author": {
     "name": "Erik Schierboom",
