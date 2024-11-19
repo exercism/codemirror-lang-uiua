@@ -1,0 +1,147 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Uiua playground</title>
+  </head>
+  <body>
+    <div id="editor"></div>
+    <script type="module">
+      import { basicSetup, EditorView } from "codemirror";
+      import { EditorState, Compartment } from "@codemirror/state";
+      import { uiua } from "./src/index.ts";
+
+      window.view = new EditorView({
+        doc: `; Logical
+
+true
+false
+maybe
+
+; Integer
+
+1
+0123456789
+2e3
+4e-523
+71e+1
+
+; Floating
+
+1.0
+0.123456789
+
+; Version
+
+1.0.0
+23.101.19000-beta1
+7.8.9-rc1+build3
+7.8.9.2.3
+
+; Null
+
+null
+
+; Type
+
+:integer
+
+; Literal
+
+'foo
+
+; Symbol literal
+
+'++
+
+; Color
+
+#red
+#0077BB
+
+; Char
+
+'a'
+'9'
+'\''
+
+; Regex
+
+{/[A-Z]/}
+{/they/i}
+
+; Word
+
+one
+Two_Three
+happy?
+
+; Block
+
+[1]
+[true false]
+["hello" ["there"]]
+
+; Dictionary
+
+#[
+     name: "John"
+     surname: "Doe"
+     age: 34
+]
+
+; Inline
+
+(1)
+(true false)
+
+; Function
+
+function [x y][x + y]
+$ [x y][x + y]
+
+; Expressions
+
+x + y
+x - y
+x / y
+x * y
+
+; String
+
+"this is a quoted string"
+"this\tis a quoted string"
+{
+    this is yet
+    another
+    very
+    long string
+    that spans more
+    than
+    one
+    line
+}
+{:
+  this is yet
+    another
+    very
+  long string
+  that spans more
+      than
+          one
+          line
+:}
+------
+this
+is
+using
+dash
+notation
+`,
+        extensions: [basicSetup, uiua()],
+        parent: document.querySelector("#editor"),
+      });
+    </script>
+  </body>
+</html>
