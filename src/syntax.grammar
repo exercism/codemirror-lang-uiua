@@ -6,7 +6,7 @@ expression {
   number
 }
 
-number { Integer | Floating | Fraction | BuiltInNumber }
+number { Integer | Floating | Fraction | SpecialNumber }
 
 @tokens {
   whitespace { @whitespace+ }
@@ -18,7 +18,7 @@ number { Integer | Floating | Fraction | BuiltInNumber }
   Integer { "¯"? digit+ (("e" | "E") ("+" | "-")? digit+)? }
   Floating { "¯"? digit+ "." digit+ }
   Fraction { "¯"? digit+ "/" "¯"? digit+ }
-  BuiltInNumber { "η" | "π" | "τ" | "∞" }
+  SpecialNumber { "η" | "π" | "τ" | "∞" }
   @precedence { Fraction, Floating, Integer }
 
   Symbol { "<=" | "=>" | "<=>" | "<<=" | "=>>" | "<<=>>" | "<-" | "->" | "<->" | "<<-" | "->>" | "<<->>" | "-<" | ">-" | ">-<" | "-<<" | ">>-" | ">>-<<" | "<<" | ">>" | "<<<" | ">>>" | "<--" | "-->" | "<-->" | "<==" | "==>" | "<==>" | "<~" | "~>" | "<~>" | "|>" | "<|" | "<|>" | "=<" | ">=" | "<>" | "<:" | "-:" | ">:" | "~" | "!" | "!!" | "?" | "??" | "@" | "##" | "###" | "####" | "#####" | "######" | "$" | "%" | "^" | "&" | "*" | "**" | "-" | "--" | "=" | "==" | "=~" | "+" | "++" | "<" | ">" | "/" | "/%" | "//" | "\\" | "\\\\" | "|" | "|-" | "|=" | ".." | "..." | "./" | "::" | ":=" | "||" | "∅" | "∞" | "∑" | "∏" | "∩" | "∪" | "⊂" | "⊃" | "⊆" | "⊇" | "∈" | "∉" | "∧" | "∨" | "⊻" | "⊼" | "¬" }

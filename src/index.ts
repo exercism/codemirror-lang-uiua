@@ -27,7 +27,7 @@ export const uiuaLanguage = LRLanguage.define({
         null: t.null,
         Type: t.typeName,
         Char: t.character,
-        "Integer BuiltInNumber": t.number,
+        "Integer SpecialNumber": t.number,
         "Floating Fraction": t.float,
         Color: t.atom,
         "( )": t.paren,

@@ -4,4 +4,4 @@
 
 ==>
 
-Program(Integer,Integer,Integer,Floating,Fraction,Fraction,Floating,BuiltInNumber,BuiltInNumber,BuiltInNumber,BuiltInNumber)
+Program(Integer,Integer,Integer,Floating,Fraction,Fraction,Floating,SpecialNumber,SpecialNumber,SpecialNumber,SpecialNumber)
