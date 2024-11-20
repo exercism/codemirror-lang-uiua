@@ -1,4 +1,4 @@
-import { parser } from "../src/parser.js";
+import { buildParser } from "@lezer/generator";
 import { fileTests } from "@lezer/generator/dist/test";
 
 import * as fs from "fs";
@@ -7,6 +7,9 @@ import { fileURLToPath } from "url";
 import { describe, test } from "bun:test";
 
 const caseDir = path.dirname(fileURLToPath(import.meta.url));
+const parser = buildParser(
+  fs.readFileSync(path.join("src", "syntax.grammar"), "utf8")
+);
 
 for (const file of fs.readdirSync(caseDir)) {
   if (!/\.txt$/.test(file)) continue;
