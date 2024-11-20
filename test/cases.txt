@@ -1,7 +1,0 @@
-# Numbers
-
-5 6e3 0 3.2 3/4 ¯2/¯4 ¯1.1 η π τ ∞
-
-==>
-
-Program(Integer,Integer,Integer,Floating,Fraction,Fraction,Floating,SpecialNumber,SpecialNumber,SpecialNumber,SpecialNumber)
