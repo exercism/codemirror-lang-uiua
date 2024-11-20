@@ -3,10 +3,12 @@
 @skip { whitespace | LineComment }
 
 expression {
-  number
+  number | Char
 }
 
 number { Integer | Floating | Fraction | SpecialNumber }
+
+Char { hexChar | unicodeChar | escapeChar | char }
 
 @tokens {
   whitespace { @whitespace+ }
@@ -21,9 +23,129 @@ number { Integer | Floating | Fraction | SpecialNumber }
   SpecialNumber { "η" | "π" | "τ" | "∞" }
   @precedence { Fraction, Floating, Integer }
 
+
+  hexChar { "@\\x" hex hex}
+  unicodeChar {"@\\u" hex hex hex hex | "\\u{" hex+ "}" }
+  escapeChar {"@\\n" | "\\r" | "\\t" | "\\b" | "\\f" | "\\v" | "\\\\" | "\\0" | "\\s"}
+  char { "@" _ }
+
+
   Symbol { "<=" | "=>" | "<=>" | "<<=" | "=>>" | "<<=>>" | "<-" | "->" | "<->" | "<<-" | "->>" | "<<->>" | "-<" | ">-" | ">-<" | "-<<" | ">>-" | ">>-<<" | "<<" | ">>" | "<<<" | ">>>" | "<--" | "-->" | "<-->" | "<==" | "==>" | "<==>" | "<~" | "~>" | "<~>" | "|>" | "<|" | "<|>" | "=<" | ">=" | "<>" | "<:" | "-:" | ">:" | "~" | "!" | "!!" | "?" | "??" | "@" | "##" | "###" | "####" | "#####" | "######" | "$" | "%" | "^" | "&" | "*" | "**" | "-" | "--" | "=" | "==" | "=~" | "+" | "++" | "<" | ">" | "/" | "/%" | "//" | "\\" | "\\\\" | "|" | "|-" | "|=" | ".." | "..." | "./" | "::" | ":=" | "||" | "∅" | "∞" | "∑" | "∏" | "∩" | "∪" | "⊂" | "⊃" | "⊆" | "⊇" | "∈" | "∉" | "∧" | "∨" | "⊻" | "⊼" | "¬" }
 
   LineComment { ";" ![\n]* }
 }
 
 @detectDelim
+
+
+
+// @top Program { expression* }
+
+// @skip { whitespace | LineComment }
+
+// expression {
+//   logical |
+//   number |
+//   null |
+//   Type |
+//   Char |
+//   String |
+//   Regex |
+//   Word |
+//   Color |
+//   Literal |
+//   Inline |
+//   Block |
+//   Dictionary |
+//   Function |
+//   Symbol
+// }
+
+// logical {
+//   kwn<"true" | "false" | "maybe", Logical>
+// }
+
+// number {
+//   Integer | Floating | Version
+// }
+
+// null { kw<"null"> }
+
+// Type { ":" identifier }
+
+// Literal { "'" (Word | Symbol) }
+
+// // TODO: label
+// // TODO: attribute
+// // TODO: attributeLabel
+// // TODO: path
+
+// Word { identifier }
+
+// Inline { "(" expression* ")" }
+
+// Block { "[" expression* "]" }
+
+// Key { identifier }
+// Value { expression }
+// KeyValuePair { Key ":" Value }
+
+// Dictionary { "#[" KeyValuePair* "]" }
+
+// Parameter { Word }
+// Parameters { "[" Parameter* "]" }
+
+// Function {
+//   @specialize<identifier, "function"> Parameters Block
+// }
+
+// @skip {} {
+//   String {
+//     '"' (Escape | stringContentDoubleQuote)* '"' |
+//     "«" stringContentSmartQuote* ("\n" | eof) |
+//     "{:" stringContentMultiline* ":}" |
+//     "{" stringContentMultiline* "}" |
+//     "------\n" stringContentDash* eof 
+//   }
+// }
+
+// Regex { "{/" regexContent* "/" ("i" | "m" | "s")* "}" }
+
+// kw<term> { kwn<term, term> }
+// kwn<term, name> { @specialize[@name={name}]<identifier, term> }
+
+// @tokens {
+//   whitespace { @whitespace+ }
+//   digit { @digit }
+//   letter { @asciiLetter }
+//   hex { @digit | $[a-fA-F] }
+//   eof { @eof}
+
+//   Integer { digit+ (("e" | "E") ("+" | "-")? digit+)? }
+//   Floating { digit+ "." digit+ }
+//   Version { digit+ "." digit+ "." digit+ (letter | digit | "+" | "-" | ".")* }
+//   @precedence { Version, Floating, Integer }
+
+//   Color { "#" (hex hex hex hex hex hex | letter+) }
+
+//   Char { "'" (Escape | ![']) "'" }
+//   Escape { "\\" _ }
+
+//   stringContentDoubleQuote { ![\\\n"] }
+//   stringContentSmartQuote { ![\n] }
+//   stringContentMultiline { ![}] }
+//   stringContentDash { _ }
+
+//   regexContent { ![\\\n/] }
+
+//   @precedence { regexContent, whitespace, LineComment }
+
+//   identifierChar { letter | "_" }
+//   identifier { identifierChar (identifierChar | digit | "?")* }
+
+//   Symbol { "<=" | "=>" | "<=>" | "<<=" | "=>>" | "<<=>>" | "<-" | "->" | "<->" | "<<-" | "->>" | "<<->>" | "-<" | ">-" | ">-<" | "-<<" | ">>-" | ">>-<<" | "<<" | ">>" | "<<<" | ">>>" | "<--" | "-->" | "<-->" | "<==" | "==>" | "<==>" | "<~" | "~>" | "<~>" | "|>" | "<|" | "<|>" | "=<" | ">=" | "<>" | "<:" | "-:" | ">:" | "~" | "!" | "!!" | "?" | "??" | "@" | "##" | "###" | "####" | "#####" | "######" | "$" | "%" | "^" | "&" | "*" | "**" | "-" | "--" | "=" | "==" | "=~" | "+" | "++" | "<" | ">" | "/" | "/%" | "//" | "\\" | "\\\\" | "|" | "|-" | "|=" | ".." | "..." | "./" | "::" | ":=" | "||" | "∅" | "∞" | "∑" | "∏" | "∩" | "∪" | "⊂" | "⊃" | "⊆" | "⊇" | "∈" | "∉" | "∧" | "∨" | "⊻" | "⊼" | "¬" }
+
+//   LineComment { ";" ![\n]* }
+// }
+
+// @detectDelim
