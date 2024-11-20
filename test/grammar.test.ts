@@ -6,7 +6,10 @@ import * as path from "path";
 import { fileURLToPath } from "url";
 import { describe, test } from "bun:test";
 
-const caseDir = path.dirname(fileURLToPath(import.meta.url));
+const caseDir = path.join(
+  path.dirname(fileURLToPath(import.meta.url)),
+  "cases"
+);
 const parser = buildParser(
   fs.readFileSync(path.join("src", "syntax.grammar"), "utf8")
 );

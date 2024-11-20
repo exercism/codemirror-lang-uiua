@@ -1,0 +1,31 @@
+# Regular
+
+@a @Z
+
+==>
+
+Program(Char,Char)
+
+# Unicode
+
+@\u2665 @\u{1f600}
+
+==>
+
+Program(Char, Char)
+
+# Hex
+
+@\xae @\x1F
+
+==>
+
+Program(Char,Char)
+
+# Escaped
+
+@\n @\s
+
+==>
+
+Program(Char, Char)
