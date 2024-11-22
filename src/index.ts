@@ -29,7 +29,7 @@ export const uiuaLanguage = LRLanguage.define({
         "[ ]": t.squareBracket,
         "{ }": t.brace,
         Escape: t.escape,
-        Function: t.function(t.definition(t.variableName)),
+        Binding: t.function(t.definition(t.variableName)),
         Glyph: t.atom,
       }),
     ],

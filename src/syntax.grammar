@@ -1,6 +1,11 @@
-@top Program { expression* }
+@top Program { statement* }
 
 @skip { whitespace | LineComment }
+
+statement {
+  expression |
+  Binding
+}
 
 expression {
   String | 
@@ -13,14 +18,7 @@ number { Integer | Floating | Fraction | SpecialNumber }
 
 Char { hexChar | unicodeChar | escapeChar | char }
 
-// @skip {} {
-//   String {
-//     '"'  '"' |
-//     '$"'  '"' |
-//     '$ ' |
-//     '$$ '
-//   }
-// }
+Binding { identifier "←" expression }
 
 @tokens {
   whitespace { @whitespace+ }
@@ -46,7 +44,9 @@ Char { hexChar | unicodeChar | escapeChar | char }
 
   Glyph { $[◠⌵+⌝’⍤∠˜◡⋯∩□⊓⊸⍩⌈⑄⊛ℂ◇⊟◴∂♭⊙÷⍢↘.∵=⍖⬚⌕⊢¤:⌊∧⊃⋅≥>⊕∘⊗∫⍚⊂▽⊣⧻≤<ₙ⦷≍↥∊∈↧◿×¯¬≠⌅⤚⟜⤸⋕⊜⊡◌ⁿ⚂⇡/⍥☇↯⇌⍏↻⁅≡⊏△±∿⍆√\?\-⨬⊞↙⸮⍉◹⍣⧅°⍜◰⊚◫⤙] }
 
-  @precedence { Fraction, Floating, Integer, Glyph }
+  identifier { letter+ ("_"+ digit+)? }
+
+  @precedence { Identifier, Fraction, Floating, Integer, Glyph }
 
   LineComment { ";" ![\n]* }
 }
