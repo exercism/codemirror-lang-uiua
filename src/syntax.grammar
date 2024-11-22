@@ -11,21 +11,23 @@ expression {
   String | 
   Char | 
   number |
-  Glyph
+  Glyph |
+  Inline
 }
 
 number { Integer | Floating | Fraction | SpecialNumber }
 
 Char { hexChar | unicodeChar | escapeChar | char }
 
-Binding { identifier "←" expression }
+Binding { Identifier "←" Signature? expression }
+
+Inline { "(" expression* ")" }
 
 @tokens {
   whitespace { @whitespace+ }
   digit { @digit }
   letter { @asciiLetter }
   hex { @digit | $[a-fA-F] }
-  eof { @eof}
 
   Integer { "¯"? digit+ (("e" | "E") ("+" | "-")? digit+)? }
   Floating { "¯"? digit+ "." digit+ }
@@ -44,9 +46,11 @@ Binding { identifier "←" expression }
 
   Glyph { $[◠⌵+⌝’⍤∠˜◡⋯∩□⊓⊸⍩⌈⑄⊛ℂ◇⊟◴∂♭⊙÷⍢↘.∵=⍖⬚⌕⊢¤:⌊∧⊃⋅≥>⊕∘⊗∫⍚⊂▽⊣⧻≤<ₙ⦷≍↥∊∈↧◿×¯¬≠⌅⤚⟜⤸⋕⊜⊡◌ⁿ⚂⇡/⍥☇↯⇌⍏↻⁅≡⊏△±∿⍆√\?\-⨬⊞↙⸮⍉◹⍣⧅°⍜◰⊚◫⤙] }
 
-  identifier { letter+ ("_"+ digit+)? }
+  Identifier { letter+ ("_"+ digit+)? }
 
-  @precedence { Identifier, Fraction, Floating, Integer, Glyph }
+  Signature { "|" digit+ ("." digit+)? }
+
+  @precedence { Identifier, Signature, Fraction, Floating, Integer, Glyph }
 
   LineComment { ";" ![\n]* }
 }

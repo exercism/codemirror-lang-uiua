@@ -1,0 +1,24 @@
+# Regular
+
+Cube ← ××..
+
+==>
+
+Program(Binding(Identifier,Glyph),Glyph,Glyph,Glyph)
+
+# Inline
+
+Cube ← (××..)
+
+==>
+
+Program(Binding(Identifier,Inline(Glyph,Glyph,Glyph,Glyph)))
+
+# With signature
+
+TimesThree ← |1.1 ×3
+TimesThree ← |1 ×3
+
+==>
+
+Program(Binding(Identifier,Signature,Glyph),Integer,Binding(Identifier,Signature,Glyph),Integer)

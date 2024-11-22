@@ -6,7 +6,7 @@ NumTwo ← 2
 
 ==>
 
-Program(Binding(Integer),Binding(Integer),Binding(Integer))
+Program(Binding(Identifier,Integer),Binding(Identifier,Integer),Binding(Identifier,Integer))
 
 # Subscript
 
@@ -15,4 +15,4 @@ Sha__256 ← "TODO"
 
 ==>
 
-Program(Binding(Integer),Binding(String))
+Program(Binding(Identifier,Integer),Binding(Identifier,String))
