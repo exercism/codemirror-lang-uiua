@@ -9,8 +9,7 @@
   "scripts": {
     "prepare": "rollup -c",
     "generate": "lezer-generator src/syntax.grammar -o src/parser.js",
-    "dev": "vite",
-    "release": "bun run prepare && npm publish"
+    "dev": "vite"
   },
   "type": "module",
   "main": "dist/index.cjs",
