@@ -5,7 +5,8 @@
 expression {
   String | 
   Char | 
-  number
+  number |
+  Glyph
 }
 
 number { Integer | Floating | Fraction | SpecialNumber }
@@ -32,8 +33,7 @@ Char { hexChar | unicodeChar | escapeChar | char }
   Floating { "¯"? digit+ "." digit+ }
   Fraction { "¯"? digit+ "/" "¯"? digit+ }
   SpecialNumber { $[ηπτ∞] }
-  @precedence { Fraction, Floating, Integer }
-
+  
   hexChar { "@\\x" hex hex}
   unicodeChar {"@\\u" (hex hex hex hex | "{" hex+ "}") }
   escapeChar { "@\\" $[0nrtbfvs\\] }
@@ -44,7 +44,9 @@ Char { hexChar | unicodeChar | escapeChar | char }
   quotedString { "$"? '"' (!["\\] | Escape)* '"'}
   rawString { "$"? "$ " ![\n]*+ }
 
-  Symbol { "<=" | "=>" | "<=>" | "<<=" | "=>>" | "<<=>>" | "<-" | "->" | "<->" | "<<-" | "->>" | "<<->>" | "-<" | ">-" | ">-<" | "-<<" | ">>-" | ">>-<<" | "<<" | ">>" | "<<<" | ">>>" | "<--" | "-->" | "<-->" | "<==" | "==>" | "<==>" | "<~" | "~>" | "<~>" | "|>" | "<|" | "<|>" | "=<" | ">=" | "<>" | "<:" | "-:" | ">:" | "~" | "!" | "!!" | "?" | "??" | "@" | "##" | "###" | "####" | "#####" | "######" | "$" | "%" | "^" | "&" | "*" | "**" | "-" | "--" | "=" | "==" | "=~" | "+" | "++" | "<" | ">" | "/" | "/%" | "//" | "\\" | "\\\\" | "|" | "|-" | "|=" | ".." | "..." | "./" | "::" | ":=" | "||" | "∅" | "∞" | "∑" | "∏" | "∩" | "∪" | "⊂" | "⊃" | "⊆" | "⊇" | "∈" | "∉" | "∧" | "∨" | "⊻" | "⊼" | "¬" }
+  Glyph { $[◠⌵+⌝’⍤∠˜◡⋯∩□⊓⊸⍩⌈⑄⊛ℂ◇⊟◴∂♭⊙÷⍢↘.∵=⍖⬚⌕⊢¤:⌊∧⊃⋅≥>⊕∘⊗∫⍚⊂▽⊣⧻≤<ₙ⦷≍↥∊∈↧◿×¯¬≠⌅⤚⟜⤸⋕⊜⊡◌ⁿ⚂⇡/⍥☇↯⇌⍏↻⁅≡⊏△±∿⍆√\?\-⨬⊞↙⸮⍉◹⍣⧅°⍜◰⊚◫⤙] }
+
+  @precedence { Fraction, Floating, Integer, Glyph }
 
   LineComment { ";" ![\n]* }
 }
