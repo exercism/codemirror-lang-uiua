@@ -1,0 +1,23 @@
+# Stack notation
+
+[] [1 2 3]
+
+==>
+
+Program(Array,Array(Integer,Integer,Integer))
+
+# Strand notation
+
+1_2_3 [1_2 3_4]
+
+==>
+
+Program(Array(Integer,Integer,Integer),Array(Array(Integer,Integer),Array(Integer,Integer)))
+
+# Box notation
+
+{} {1 {2 3}}
+
+==>
+
+Program(Array,Array(Integer,Array(Integer,Integer)))

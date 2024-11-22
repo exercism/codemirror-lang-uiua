@@ -8,6 +8,7 @@ statement {
 }
 
 expression {
+  Array |
   String | 
   Char | 
   number |
@@ -22,6 +23,17 @@ Char { hexChar | unicodeChar | escapeChar | char }
 Binding { Identifier "←" Signature? expression }
 
 Inline { "(" expression* ")" }
+
+@precedence {
+  // Define precedence if needed for underscore
+  underscore @left 
+}
+
+Array {
+  "[" expression* "]" |
+  "{" expression* "}" |
+  expression (!underscore "_" expression)+
+}
 
 @tokens {
   whitespace { @whitespace+ }
