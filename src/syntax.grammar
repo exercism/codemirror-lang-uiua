@@ -22,7 +22,7 @@ Char { hexChar | unicodeChar | escapeChar | char }
 
 Binding { Identifier "←" Signature? expression }
 
-Inline { "(" expression* ")" }
+Inline { "(" Signature? expression* ")" }
 
 @precedence {
   // Define precedence if needed for underscore

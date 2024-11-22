@@ -6,6 +6,15 @@ Cube ← ××..
 
 Program(Binding(Identifier,Glyph),Glyph,Glyph,Glyph)
 
+# Regular with signature
+
+TimesThree ← |1.1 ×3
+TimesThree ← |1 ×3
+
+==>
+
+Program(Binding(Identifier,Signature,Glyph),Integer,Binding(Identifier,Signature,Glyph),Integer)
+
 # Inline
 
 Cube ← (××..)
@@ -14,11 +23,11 @@ Cube ← (××..)
 
 Program(Binding(Identifier,Inline(Glyph,Glyph,Glyph,Glyph)))
 
-# With signature
+# Inline with signature
 
-TimesThree ← |1.1 ×3
-TimesThree ← |1 ×3
+Cube ← (|1.2 .××..)
 
 ==>
 
-Program(Binding(Identifier,Signature,Glyph),Integer,Binding(Identifier,Signature,Glyph),Integer)
+Program(Binding(Identifier,Inline(Signature,Glyph,Glyph,Glyph,Glyph,Glyph)))
+
