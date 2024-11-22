@@ -7,7 +7,7 @@
     "email": "erik_schierboom@hotmail.com"
   },
   "scripts": {
-    "prepare": "rollup -c",
+    "prepare": "bun run rollup -c",
     "generate": "lezer-generator src/syntax.grammar -o src/parser.js",
     "dev": "vite"
   },
