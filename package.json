@@ -20,6 +20,9 @@
   },
   "types": "dist/index.d.ts",
   "sideEffects": false,
+  "publishConfig": {
+    "access": "public"
+  },
   "dependencies": {
     "@codemirror/language": "^6.10.2",
     "@lezer/highlight": "^1.2.0",
