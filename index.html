@@ -17,6 +17,18 @@
 
 # Characters
 @a @Z @  @\n @\s @\xae @\x1F @\u2665 @\u{1f600}
+
+# Strings
+
+""
+"Hello, world!"
+"Hello,\\sworld!"
+"Hello, \\"world\\"!"
+$"Hello _" "World"
+$ Hello
+$ World!
+"World"
+$$ Hello _
       `,
         extensions: [basicSetup, uiua()],
         parent: document.querySelector("#editor"),

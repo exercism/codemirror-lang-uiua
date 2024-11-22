@@ -3,12 +3,23 @@
 @skip { whitespace | LineComment }
 
 expression {
-  number | Char
+  String | 
+  Char | 
+  number
 }
 
 number { Integer | Floating | Fraction | SpecialNumber }
 
 Char { hexChar | unicodeChar | escapeChar | char }
+
+// @skip {} {
+//   String {
+//     '"'  '"' |
+//     '$"'  '"' |
+//     '$ ' |
+//     '$$ '
+//   }
+// }
 
 @tokens {
   whitespace { @whitespace+ }
@@ -27,6 +38,11 @@ Char { hexChar | unicodeChar | escapeChar | char }
   unicodeChar {"@\\u" (hex hex hex hex | "{" hex+ "}") }
   escapeChar { "@\\" $[0nrtbfvs\\] }
   char { "@" _ }
+
+  Escape { "\\" _ }
+  String { quotedString | rawString }
+  quotedString { "$"? '"' (!["\\] | Escape)* '"'}
+  rawString { "$"? "$ " ![\n]*+ }
 
   Symbol { "<=" | "=>" | "<=>" | "<<=" | "=>>" | "<<=>>" | "<-" | "->" | "<->" | "<<-" | "->>" | "<<->>" | "-<" | ">-" | ">-<" | "-<<" | ">>-" | ">>-<<" | "<<" | ">>" | "<<<" | ">>>" | "<--" | "-->" | "<-->" | "<==" | "==>" | "<==>" | "<~" | "~>" | "<~>" | "|>" | "<|" | "<|>" | "=<" | ">=" | "<>" | "<:" | "-:" | ">:" | "~" | "!" | "!!" | "?" | "??" | "@" | "##" | "###" | "####" | "#####" | "######" | "$" | "%" | "^" | "&" | "*" | "**" | "-" | "--" | "=" | "==" | "=~" | "+" | "++" | "<" | ">" | "/" | "/%" | "//" | "\\" | "\\\\" | "|" | "|-" | "|=" | ".." | "..." | "./" | "::" | ":=" | "||" | "∅" | "∞" | "∑" | "∏" | "∩" | "∪" | "⊂" | "⊃" | "⊆" | "⊇" | "∈" | "∉" | "∧" | "∨" | "⊻" | "⊼" | "¬" }
 

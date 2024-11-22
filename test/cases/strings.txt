@@ -1,0 +1,43 @@
+# Regular
+
+""
+"Hello, world!"
+
+==>
+
+Program(String,String)
+
+# Escaped
+
+"Hello,\sworld!"
+"Hello, \"world\"!"
+
+==>
+
+Program(String,String)
+
+# Format string
+
+$"Hello _" "World"
+
+==>
+
+Program(String, String)
+
+# Raw string
+
+$ Hello
+$ World!
+
+==>
+
+Program(String, String)
+
+# Raw format string
+
+"World"
+$$ Hello _
+
+==>
+
+Program(String, String)
