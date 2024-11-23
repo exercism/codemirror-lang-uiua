@@ -1,4 +1,4 @@
-import { parser } from "./syntax.grammar";
+import { parser } from "./parser";
 import {
   LRLanguage,
   LanguageSupport,
