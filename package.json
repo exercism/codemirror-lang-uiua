@@ -1,6 +1,6 @@
 {
   "name": "@exercism/codemirror-lang-uiua",
-  "version": "0.0.1",
+  "version": "0.0.2",
   "description": "Uiua language support for CodeMirror",
   "author": {
     "name": "Erik Schierboom",
@@ -8,7 +8,6 @@
   },
   "scripts": {
     "prepare": "bun run rollup -c",
-    "generate": "lezer-generator src/syntax.grammar -o src/parser.js",
     "dev": "vite"
   },
   "type": "module",
