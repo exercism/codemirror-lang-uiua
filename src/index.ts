@@ -1,24 +1,11 @@
-import { parser } from "./parser";
-import {
-  LRLanguage,
-  LanguageSupport,
-  indentNodeProp,
-  foldNodeProp,
-  foldInside,
-  delimitedIndent,
-} from "@codemirror/language";
+import { parser } from "./syntax.grammar";
+import { LRLanguage, LanguageSupport } from "@codemirror/language";
 import { styleTags, tags as t } from "@lezer/highlight";
 
 export const uiuaLanguage = LRLanguage.define({
   name: "uiua",
   parser: parser.configure({
     props: [
-      indentNodeProp.add({
-        Application: delimitedIndent({ closing: ")", align: false }),
-      }),
-      foldNodeProp.add({
-        Application: foldInside,
-      }),
       styleTags({
         String: t.string,
         LineComment: t.lineComment,
@@ -36,7 +23,8 @@ export const uiuaLanguage = LRLanguage.define({
     ],
   }),
   languageData: {
-    commentTokens: { line: ";" },
+    closeBrackets: { brackets: ["(", "[", "{", '"'] },
+    commentTokens: { line: "#" },
   },
 });
 
