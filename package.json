@@ -23,9 +23,9 @@
     "access": "public"
   },
   "dependencies": {
-    "@codemirror/language": "^6.10.2",
+    "@codemirror/language": "^6.10.1",
     "@lezer/highlight": "^1.2.0",
-    "@lezer/lr": "^1.4.1"
+    "@lezer/lr": "^1.4.0"
   },
   "devDependencies": {
     "@lezer/generator": "^1.7.0",
